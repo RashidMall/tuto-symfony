@@ -1,19 +1,10 @@
 {% extends 'base.html.twig' %}
+{% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
     <h1>Create a new article</h1>
     {{ form_start(formArticle) }}
-        <div class="form-group">
-            <label for="">Title</label>
-            {{ form_widget(formArticle.title) }}
-        </div>
-        <div class="form-group">
-            <label for="">Content</label>
-            {{ form_widget(formArticle.content) }}
-        </div>
-        <div class="form-group">
-            <label for="">Image</label>
-            {{ form_widget(formArticle.image) }}
-        </div>
+    {{ form_widget(formArticle) }}
+    <button type="submit" class="btn btn-success">Create</button>
     {{ form(formArticle) }}
 {% endblock %}

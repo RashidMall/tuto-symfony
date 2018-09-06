@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class BlogController extends AbstractController
@@ -53,15 +54,12 @@ class BlogController extends AbstractController
         $form = $this->createFormBuilder($article)
             ->add('title', TextType::class, ['attr' => [
                 'placeholder' => "Title",
-                'class' => "form-control"
                 ]])
             ->add('content', TextareaType::class, ['attr' => [
                 'placeholder' => "Content",
-                'class' => "form-control"
                 ]])
             ->add('image', TextType::class, ['attr' => [
                 'placeholder' => "Image",
-                'class' => "form-control"
                 ]])
             ->getForm();
 
