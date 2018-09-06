@@ -4,7 +4,11 @@
 {% block body %}
     <h1>Create a new article</h1>
     {{ form_start(formArticle) }}
-    {{ form_widget(formArticle) }}
+
+    {{ form_row(formArticle.title, {'attr': {'placeholder': "Article Title"}}) }}
+    {{ form_row(formArticle.content, {'attr': {'placeholder': "Article Content"}}) }}
+    {{ form_row(formArticle.image, {'attr': {'placeholder': "Image url"}}) }}
+
     <button type="submit" class="btn btn-success">Create</button>
     {{ form(formArticle) }}
 {% endblock %}
