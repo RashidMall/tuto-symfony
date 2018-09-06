@@ -48,7 +48,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/new", name="new_article")
      */
-    public function new(Request $request){
+    public function new(Request $request, ObjectManager $manager){
         $article = new Article();
 
         $form = $this->createFormBuilder($article)
@@ -57,6 +57,17 @@ class BlogController extends AbstractController
             ->add('image')
             ->getForm();
 
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()){
+            $article->setCreatedAt(new \DateTime());
+
+            $manager->persist($article);
+            $manager->flush();
+
+            return $this->redirectToRoute('blog_show', ['id' => $article->getId()]);
+        }
+        
         return $this->render('blog/new.html.twig', [
             'formArticle' => $form->createView()
         ]);
