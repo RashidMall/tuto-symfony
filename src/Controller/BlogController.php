@@ -6,6 +6,10 @@ use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class BlogController extends AbstractController
 {
@@ -43,7 +47,26 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/new", name="new_article")
      */
-    public function new(){
-        return $this->render('blog/new.html.twig');
+    public function new(Request $request){
+        $article = new Article();
+
+        $form = $this->createFormBuilder($article)
+            ->add('title', TextType::class, ['attr' => [
+                'placeholder' => "Title",
+                'class' => "form-control"
+                ]])
+            ->add('content', TextareaType::class, ['attr' => [
+                'placeholder' => "Content",
+                'class' => "form-control"
+                ]])
+            ->add('image', TextType::class, ['attr' => [
+                'placeholder' => "Image",
+                'class' => "form-control"
+                ]])
+            ->getForm();
+
+        return $this->render('blog/new.html.twig', [
+            'formArticle' => $form->createView()
+        ]);
     }
 }
