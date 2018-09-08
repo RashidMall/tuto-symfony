@@ -17,7 +17,7 @@ class ArticleFixtures extends Fixture
         // Create fake categories
         for($i = 0; $i < 3; $i++){
             $category = new Category();
-            $category->setTitle($faker->sentence())
+            $category->setTitle($faker->word)
                      ->setDescription($faker->paragraph());
 
             $manager->persist($category);
