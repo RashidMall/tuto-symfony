@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sign Up</h1>
+    {{ form_start(formReg) }}
+    {{ form_row(formReg.email, {'label':'Email', 'attr': {'placeholder': "Email"}}) }}
+    {{ form_row(formReg.username, {'label':'Username', 'attr': {'placeholder': "Username"}}) }}
+    {{ form_row(formReg.password, {'label':'New password', 'attr': {'placeholder': "New password"}}) }}
+    {{ form_row(formReg.confirm_password, {'label':'Confirm password', 'attr': {'placeholder': "Confirm password"}}) }}
+    <button type="submit" class="btn btn-success">Sign Up</button>
+    {{ form_end(formReg) }}
+{% endblock %}
